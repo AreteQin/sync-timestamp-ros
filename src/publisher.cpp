@@ -1,6 +1,5 @@
 #include <ros/ros.h>
 #include <tf2_ros/transform_broadcaster.h>
-#include <geometry_msgs/TransformStamped.h>
 #include <image_transport/image_transport.h>
 #include <sensor_msgs/image_encodings.h>
 #include <cv_bridge/cv_bridge.h>
@@ -8,9 +7,7 @@
 #include <geometry_msgs/QuaternionStamped.h>
 #include <geometry_msgs/PointStamped.h>
 #include <sophus/se3.hpp>
-
 #include <clocale>
-#include <signal.h>
 
 int main(int argc, char **argv) {
 
@@ -62,9 +59,6 @@ int main(int argc, char **argv) {
         // Get the current RGB-D frame's RGB and depth images. This may wait for I/O
         // to complete in case it did not complete in the pre-loading thread yet.
         capture >> rgb; //load
-        //printf("ros is ok\n");
-        //cv::imshow("Color", image);
-        //cv::waitKey(3);
         if (rgb.empty()) {
             ROS_ERROR_STREAM("Failed to capture image!");
             ros::shutdown();
