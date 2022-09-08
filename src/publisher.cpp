@@ -7,7 +7,6 @@
 #include <geometry_msgs/QuaternionStamped.h>
 #include <geometry_msgs/PointStamped.h>
 #include <sophus/se3.hpp>
-#include <clocale>
 
 int main(int argc, char **argv) {
 

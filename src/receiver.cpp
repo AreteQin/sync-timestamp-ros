@@ -13,14 +13,13 @@
 
 // sync sensor data
 #include <message_filters/subscriber.h>
-#include <message_filters/synchronizer.h>
 #include <message_filters/time_synchronizer.h>
 
 // sync image
 #include <image_transport/subscriber_filter.h>
 
 void Callback(const geometry_msgs::QuaternionStampedConstPtr &q, const geometry_msgs::PointStampedConstPtr &t,
-                  const sensor_msgs::ImageConstPtr &color, const sensor_msgs::ImageConstPtr &depth) {
+              const sensor_msgs::ImageConstPtr &color, const sensor_msgs::ImageConstPtr &depth) {
     if ((q->quaternion.x == 0 && q->quaternion.y == 0 && q->quaternion.z == 0 && q->quaternion.w == 0)) {
         return;
     }
@@ -67,9 +66,13 @@ int main(int argc, char **argv) {
     image_transport::SubscriberFilter sub_depth(it, "camera/depth/image_raw", 1);
 
     //将话题的数据进行同步
-    message_filters::TimeSynchronizer<geometry_msgs::QuaternionStamped, geometry_msgs::PointStamped, sensor_msgs::Image, sensor_msgs::Image>
+    // Sync the subscribed data
+    message_filters::TimeSynchronizer<geometry_msgs::QuaternionStamped,
+                                      geometry_msgs::PointStamped,
+                                      sensor_msgs::Image, sensor_msgs::Image>
             sync(sub_quaternion, sub_translation, sub_color, sub_depth, 10);
-    //指定一个回调函数, 实现两个数据的同步读取
+    //所有subscriber使用一个回调函数，_1至_4分别是callback的四个输入参数
+    // All subscribers use one callback function, _1 to _4 is the input variables
     sync.registerCallback(boost::bind(&Callback, _1, _2, _3, _4));
 
     ros::Rate rate(30.0);

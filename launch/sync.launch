@@ -1,0 +1,9 @@
+<launch>
+
+  <node name="publisher" pkg="sync-timestamp-ros"
+          type="publisher"/>
+
+  <node name="receiver" pkg="sync-timestamp-ros"
+          type="receiver"/>
+
+</launch>

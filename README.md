@@ -32,8 +32,14 @@ source ./devel/setup.bash
 ```
 
 ## Test
-```
-roscore
-rosrun sync-timestamp-ros publisher
-rosrun sync-timestamp-ros receiver
-```
+Terminal 1:
+
+`roscore`
+
+Terminal 2:
+
+`rosrun sync-timestamp-ros publisher`
+
+Terminal 3:
+
+`rosrun sync-timestamp-ros receiver`
