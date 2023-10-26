@@ -39,17 +39,20 @@ add_executable(publisher src/publisher.cpp)
 target_link_libraries(publisher
         ${catkin_LIBRARIES}
         Sophus::Sophus
+        ${OpenCV_LIBRARIES}
         )
 
 add_executable(receiver src/receiver.cpp)
 target_link_libraries(receiver
         ${catkin_LIBRARIES}
         Sophus::Sophus
+        ${OpenCV_LIBRARIES}
         )
 
 add_executable(pure_image_receiver src/pure_image_receiver.cpp)
 target_link_libraries(pure_image_receiver
         ${catkin_LIBRARIES}
+        ${OpenCV_LIBRARIES}
         )
 
 add_executable(pure_pose_receiver src/pure_pose_receiver.cpp)
