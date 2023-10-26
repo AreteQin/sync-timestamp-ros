@@ -38,8 +38,12 @@ Terminal 1:
 
 Terminal 2:
 
-`rosrun sync-timestamp-ros publisher`
+```
+rosrun sync-timestamp-ros publisher
+```
 
 Terminal 3:
 
-`rosrun sync-timestamp-ros receiver`
+```
+rosrun sync-timestamp-ros receiver
+```
